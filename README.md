@@ -79,6 +79,3 @@ Deployed on the [XDC network](https://xdc.org/), StormBit leverages state-of-the
 - **XDC for a better gas usage**:
   test gas tokens are used for a better gas usage.
 
-## Contact
-
-For any inquiries or further information, feel free to contact the StormBit team at contact@quantum3labs.com
