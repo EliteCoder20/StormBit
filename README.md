@@ -1,81 +1,84 @@
-# 🏗 Scaffold-ETH 2
+## STORMBIT: DEMOCRATIZING LENDING WITH COLLECTIVE DECISION-MAKING
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+![logo transaprent](https://github.com/Quantum3-Labs/StormBit-monorepo/assets/75360886/91a07912-c74c-4185-89ea-9fbe7ce3512d)
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+![Static Badge](https://img.shields.io/badge/StormBit_Smart_Contracts-purple)
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+StormBit is a pioneering project developed during ETHDubai 2024 Hackathon, designed to revolutionize consumer lending on XDC blockchain. It introduces a unique lending marketplace targeting the micro-lending sector, seamlessly connecting decentralized finance (DeFi) with real-world financial transactions.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+## PITCH DECK
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+You can find our pitch deck [HERE](https://github.com/Quantum3-Labs/StormBit-monorepo/files/14469768/StormBit.6.pdf)
 
-## Requirements
+## DOCUMENTATION
 
-Before you begin, you need to install the following tools:
+For detailed information about StormBit, please visit our comprehensive [StormBit Documentation](https://stormbit.gitbook.io/stormbit/)
 
-- [Node (>= v18.17)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+## Overview
 
-## Quickstart
+StormBit aims to democratize access to credit, especially targeting the 99% who are traditionally underserved by conventional financial institutions. It offers various agreement types, enabling lenders and borrowers to interact transparently and efficiently in a decentralized environment.
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## Architecture
 
-1. Clone this repo & install dependencies
+### Actors
 
-```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
-yarn install
-```
+- **Lender**: Individual willing to contribute to a shared pool and participate in voting to approve or deny loans. Lenders have full control over their pool's - functionalities.
+- **Borrower**: Individual seeking or currently managing a loan within a pool. Borrowers can oversee all aspects of their loans, including repayments.
+- **User**: Accounts with the ability to view data on the app but limited interaction capabilities with most pools.
+- **Pool Manager**: User with the authority to vote on loan approvals within their designated pool.
 
-2. Run a local network in the first terminal:
+### Governance & Loans Allocation
 
-```
-yarn chain
-```
+Loan allocation is governed by a voting process, with each loan request presented as a proposal. The StormBitLending contract, inheriting necessary governance functionalities from OpenZeppelin, oversees this process. Key on-chain transactions include:
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
+- **Proposal Creation**: Initiated when a borrower requests a loan, either by depositing collateral (NFT or ERC-20 tokens) or opting for a collateral-free agreement (Simple Agreement).
+- **Casting Vote**: Exclusive to stakers, allowing them to vote on loan allocations.
+- **Voting Cool Down Period**: Introduces a delay before considering a voter's input as valid, preventing potential voting power manipulation.
 
-3. On a second terminal, deploy the test contract:
+### Agreements on StormBit
 
-```
-yarn deploy
-```
+StormBit offers three types of loan agreements:
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+- **Simple Agreement** : Focuses on trust and the borrower's reputation, allowing undercollateralized loans. It is streamlined for flexibility and simplicity, emphasizing financial terms over asset involvement.
 
-4. On a third terminal, start your NextJS app:
+- **ERC721 Agreement** : Uses NFTs as collateral, ensuring loan security. This agreement includes mechanisms for collateral management and secure NFT custody, allowing borrowers to reclaim their NFT upon fulfilling loan terms.
 
-```
-yarn start
-```
+- **ERC-20 Agreement** : Requires collateral equal to or greater than the loan amount for security. It captures essential loan initiation details and manages collateral throughout the loan lifecycle.
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+#### Security and Trust
 
-**What's next**:
+All agreements undergo rigorous security audits, including fuzzing tests, to ensure the highest security standards. Additional checks, such as a voting power cooldown variable, are implemented to safeguard against malicious activities.
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
-- Edit your smart contract test in: `packages/hardhat/test`. To run test use `yarn hardhat:test`
+## How it works
 
-## Documentation
+#### Flow
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+StormBit facilitates credit access by offering diverse agreement types. Any user can request a loan and receive equitable treatment from the pool's owners, bridging the gap between DeFi and traditional finance.
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+#### Credit Score Oracle
 
-## Contributing to Scaffold-ETH 2
+Refer to this [documentation](https://stormbit.gitbook.io/stormbit/credit-score-composite) for credit score assessement used by StormBit.
 
-We welcome contributions to Scaffold-ETH 2!
+<img width="1040" alt="Screenshot 2024-03-02 at 15 21 34" src="https://github.com/Quantum3-Labs/StormBit-monorepo/assets/75360886/7a418a13-d16c-4ca8-bcb0-ba4e9b66425a">
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+## Technologies and Innovations
+
+Deployed on the [XDC network](https://xdc.org/), StormBit leverages state-of-the-art technologies to enhance scalability and inclusivity:
+
+#### **ZEEBU**:
+
+- **Integration of ZBU token for governance** :
+  ZEEBU token plays a key role in the architecture of Stormbit as it is the included in the lending process. ZEEBU tokens are distributed to borrowers from the pool where lenders have deposited. Here is a diagram showing how it works with ZBU token.
+
+<img width="815" alt="Screenshot 2024-03-02 at 15 52 27" src="https://github.com/Quantum3-Labs/StormBit-monorepo/assets/75360886/18d6dfbf-a812-47ff-af2a-e64724ab5e5f">
+
+#### **XDC**:
+
+<img width="312" alt="Screenshot 2024-03-02 at 15 23 46" src="https://github.com/Quantum3-Labs/StormBit-monorepo/assets/75360886/85ca6ca3-e863-4cc8-9a73-8a4b2ea05e7a">
+
+- **XDC for a better gas usage**:
+  test gas tokens are used for a better gas usage.
+
+## Contact
+
+For any inquiries or further information, feel free to contact the StormBit team at contact@quantum3labs.com
